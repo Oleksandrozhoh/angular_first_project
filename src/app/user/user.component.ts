@@ -1,4 +1,4 @@
-import { Component, signal, computed } from '@angular/core';
+import { Component, Input, signal, computed, input } from '@angular/core';
 import { DUMMY_USERS } from '../dummy-users'; 
 
 const randomUserIndex = Math.floor(Math.random() * DUMMY_USERS.length);
@@ -32,13 +32,16 @@ const randomUserIndex = Math.floor(Math.random() * DUMMY_USERS.length);
 
 // Using signals for state management
 export class UserComponent {
-  selectedUser = signal(DUMMY_USERS[randomUserIndex]);
 
-  // image path is a computed signal which will be recomputed whenever selectedUser changes
-  imagePath = computed(() => `assets/users/${this.selectedUser().avatar}`);
+  // @Input() decorator allows the parent component to pass data to this component.
+  @Input({required: true}) avatar!: string; // if using signals, you can use `input` instead of `@Input` like so: avatar = input.required<string>();
+  @Input({required: true}) name!: string;
 
+  get imagePath() {
+    return `assets/users/${this.avatar}`; 
+  } // if using signals, you can use `computed` like so: imagePath = computed(() => `assets/users/${this.avatar}`);
+  
   onSelectUser(){
-    console.log('User button clicked');
-    this.selectedUser.set(DUMMY_USERS[Math.floor(Math.random() * DUMMY_USERS.length)]);
+    console.log('to be implemented');
   }
 }
