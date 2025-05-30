@@ -1,6 +1,10 @@
 <div>
-    <button>
-        <img [src]="'../../assets/users/'+selectedUser.avatar"/>
-        <span>{{selectedUser.name}}</span>
-    </button>
+  <!-- event binding -->
+  <button (click)="onSelectUser()">
+    <!-- property binding in angular -->
+    <img [src]="imagePath()" [alt]="selectedUser().name" />
+
+    <!-- data binding -->
+    <span>{{ selectedUser().name }}</span>
+  </button>
 </div>

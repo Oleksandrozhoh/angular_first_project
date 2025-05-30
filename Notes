@@ -1,0 +1,14 @@
+/* 
+State management:
+    1. Zone.js and angular's change detection mechanism - works automatically, no special installation needed.
+       -- old, every time there is a change, angular checks all components and updates the UI. Not efficient.
+    2. Use signals to notify andular about value changes and required UI updates. - requires usage of special instructions and code
+       -- new, more efficient, only updates the UI when the signal changes. using subscription to the signal. so when the signal changes, the UI updates automatically.
+
+
+
+
+
+
+
+*/
