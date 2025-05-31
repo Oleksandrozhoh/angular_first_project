@@ -1,4 +1,4 @@
-import { Component, Input, signal, computed, input } from '@angular/core';
+import { Component, Input, Output, EventEmitter, signal, computed, input } from '@angular/core';
 import { DUMMY_USERS } from '../dummy-users'; 
 
 const randomUserIndex = Math.floor(Math.random() * DUMMY_USERS.length);
@@ -36,12 +36,16 @@ export class UserComponent {
   // @Input() decorator allows the parent component to pass data to this component.
   @Input({required: true}) avatar!: string; // if using signals, you can use `input` instead of `@Input` like so: avatar = input.required<string>();
   @Input({required: true}) name!: string;
+  @Input({required: true}) id!: string;
+
+  // @Output() decorator allows this component to emit custom events to the parent components.
+  @Output() select = new EventEmitter<string>();  // if using signals, you can use `output` like so: select = output<string>();
 
   get imagePath() {
     return `assets/users/${this.avatar}`; 
   } // if using signals, you can use `computed` like so: imagePath = computed(() => `assets/users/${this.avatar}`);
   
   onSelectUser(){
-    console.log('to be implemented');
+    this.select.emit(this.id); // Emit the id of the selected user to the parent component.
   }
 }
