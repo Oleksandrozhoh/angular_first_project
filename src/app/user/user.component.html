@@ -2,9 +2,9 @@
   <!-- event binding -->
   <button (click)="onSelectUser()">
     <!-- property binding in angular -->
-    <img [src]="imagePath" [alt]="name" />
+    <img [src]="imagePath" [alt]="user.name" />
 
     <!-- data binding -->
-    <span>{{ name }}</span>
+    <span>{{ user.name }}</span>
   </button>
 </div>
