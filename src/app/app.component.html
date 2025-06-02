@@ -4,7 +4,11 @@
     <!-- angular foreach loop-->
     <!-- @for (user of users; track user.id){ -->
     <li *ngFor="let user of users">
-      <app-user [user]="user" (select)="onSelectUser($event)"></app-user>
+      <app-user
+        [user]="user"
+        [selected]="user.id === selectedUserid ? true : false"
+        (select)="onSelectUser($event)"
+      ></app-user>
     </li>
     <!-- } -->
   </ul>

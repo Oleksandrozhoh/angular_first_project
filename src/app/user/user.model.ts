@@ -1,2 +1,2 @@
-type User = { avatar: string; name: string; id: string;} // a way to define the type of user object provided by typescript
+export interface User { avatar: string; name: string; id: string;} // a way to define the type of user object provided by typescript
 // interface User { avatar: string; name: string; id: string;} // or you can use an interface like this (with interface you can only define object types)

@@ -1,6 +1,6 @@
 <div>
-  <!-- event binding -->
-  <button (click)="onSelectUser()">
+  <!-- event binding and class binding-->
+  <button [class.active]="selected" (click)="onSelectUser()">
     <!-- property binding in angular -->
     <img [src]="imagePath" [alt]="user.name" />
 

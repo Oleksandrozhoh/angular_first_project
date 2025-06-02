@@ -1,4 +1,5 @@
 import { Component, Input, Output, EventEmitter, signal, computed, input } from '@angular/core';
+import { User } from './user.model';
 
 @Component({
   selector: 'app-user',
@@ -36,6 +37,7 @@ export class UserComponent {
   //@Input({required: true}) id!: string;
 
   @Input({required: true}) user!: User; // if using signals, you can use `input` like so: user = input.required<User>();
+  @Input({required: true}) selected!: boolean; // if using signals, you can use `input` like so: selected = input.required<boolean>();
 
   // @Output() decorator allows this component to emit custom events to the parent components.
   @Output() select = new EventEmitter<string>();  // if using signals, you can use `output` like so: select = output<string>();
@@ -46,5 +48,8 @@ export class UserComponent {
   
   onSelectUser(){
     this.select.emit(this.user.id); // Emit the id of the selected user to the parent component.
+    if (this.selected) {
+      console.log('User already selected:', this.user.name);
+    }
   }
 }
