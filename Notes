@@ -5,7 +5,11 @@ State management:
     2. Use signals to notify andular about value changes and required UI updates. - requires usage of special instructions and code
        -- new, more efficient, only updates the UI when the signal changes. using subscription to the signal. so when the signal changes, the UI updates automatically.
 
-
+Directives:
+   - angular element enhancers
+      - there are 2 types of directives:
+         - structural directives
+         - attribute directives
 
 
 

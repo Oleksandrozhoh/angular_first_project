@@ -1,19 +1,59 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { TaskItemComponent } from './task-item/task-item.component';
+import { AddTaskFormComponent } from './add-task-form/add-task-form.component';
+import {type NewTask} from './add-task-form/new-task-form.model';
 
 @Component({
   selector: 'app-task',
   standalone: true,
-  imports: [TaskItemComponent],
+  imports: [TaskItemComponent, AddTaskFormComponent],
   templateUrl: './task.component.html',
   styleUrl: './task.component.css'
 })
 export class TaskDescriptionComponent {
   @Input({required: true}) name!: string;
   @Input({required: true}) userId!: string;
+  displayAddTaskForm: boolean = false;
+  newTaskId: number = 10;
 
   get selectedUserTasks() {
     return this.tasks.filter(task => task.userId === this.userId);
+  }
+
+  onCompleteTask(taskId: string) {
+    console.log(`Task completed: ${taskId}`);
+    this.tasks = this.tasks.filter(task => task.id !== taskId);
+  }
+
+  onAddTaskButton(){    
+    console.log(`Add task for user: ${this.userId}`);
+    this.displayAddTaskForm = true;
+  }
+
+  onCanselAddNewTaskForm() {
+    console.log(`Cancel add new task`)
+    this.displayAddTaskForm = false;
+  }
+
+  async onCreateNewTask(newTask: NewTask) {
+    // Add the new task to the tasks array
+    this.tasks.unshift({
+      id: `t${this.newTaskId}`,
+      userId: this.userId,
+      title: newTask.title,
+      summary: newTask.summary,
+      dueDate: newTask.dueDate
+    });
+
+    this.newTaskId++;
+
+    // Reset form state
+    this.displayAddTaskForm = false;
+
+    this.tasks.forEach(task => {
+      console.log(`TaskId: ${task.id} Task: ${task.title}, Due Date: ${task.dueDate}`);
+    });
+
   }
 
   tasks = [

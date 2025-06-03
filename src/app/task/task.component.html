@@ -1,16 +1,24 @@
 <section id="tasks">
+  @if(displayAddTaskForm) {
+  <app-add-task-form
+    [userId]="userId"
+    (canselNewTaskFrom)="onCanselAddNewTaskForm()"
+    (createNewTask)="onCreateNewTask($event)"
+  />
+
+  } @else {
   <header>
     <h2>{{ name }}'s Tasks</h2>
     <menu>
-      <button>Add Task</button>
+      <button (click)="onAddTaskButton()">Add Task</button>
     </menu>
   </header>
-
   <ul>
     @for(task of selectedUserTasks; track task.id) {
     <li>
-      <app-task-item [task]="task" />
+      <app-task-item [task]="task" (complete)="onCompleteTask($event)" />
     </li>
     }
   </ul>
+  }
 </section>
