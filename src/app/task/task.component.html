@@ -1,10 +1,6 @@
 <section id="tasks">
   @if(displayAddTaskForm) {
-  <app-add-task-form
-    [userId]="userId"
-    (canselNewTaskFrom)="onCanselAddNewTaskForm()"
-    (createNewTask)="onCreateNewTask($event)"
-  />
+  <app-add-task-form [userId]="userId" (close)="onCloseAddNewTaskForm()" />
 
   } @else {
   <header>
@@ -16,7 +12,7 @@
   <ul>
     @for(task of selectedUserTasks; track task.id) {
     <li>
-      <app-task-item [task]="task" (complete)="onCompleteTask($event)" />
+      <app-task-item [task]="task" />
     </li>
     }
   </ul>

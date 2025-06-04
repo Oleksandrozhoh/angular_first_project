@@ -11,6 +11,49 @@ Directives:
          - structural directives
          - attribute directives
 
+Services:
+   - class with @Injectable decorator
+   - can be injected into components, directives, pipes, and other services
+   - can be used to share data and logic between components
+
+Dependency Injection:
+   - angular's way of providing dependencies to components, directives, pipes, and services
+
+Property Binding:
+   - binding data from component to template, passing data to child components
+   - using square brackets [] to bind data from component to template
+   - can be used to bind data to attributes, properties, and events
+
+Event Binding:
+   - binding events from template to component, passing data from child components to parent components
+   - using parentheses () to bind events from template to component
+
+2-way Binding:
+   - binding data from component to template and from template to component
+   - using [(ngModel)] to bind data from component to template and from template to component
+   - requires FormsModule to be imported in the module
+   - can be used to bind data to input elements, select elements, and textarea elements
+
+   @if @else @for
+   - structural directives used to conditionally render elements in the template
+
+   template merging
+   - <ng-content> tag inside of a child template
+   - can be used to create components that can accept any content from the parent component
+
+   pipes
+   - used to transform data in the template
+   - can be used to format data, filter data, and sort data
+
+   ngSubmit event
+   - used to handle form submission in the template
+   - can be used to prevent default form submission behavior
+   - can be used to handle form submission in the component
+
+   Components can be:
+   - standalone components
+   - module based components
+
 
 
 

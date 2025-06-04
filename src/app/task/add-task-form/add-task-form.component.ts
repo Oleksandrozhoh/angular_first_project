@@ -1,18 +1,17 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { NewTask } from './new-task-form.model';
+import { Component, Input, Output, EventEmitter, inject } from '@angular/core';
+import { TaskService } from '../task.service';
 
 @Component({
   selector: 'app-add-task-form',
-  standalone: true,
-  imports: [FormsModule],
+  standalone: false,
   templateUrl: './add-task-form.component.html',
   styleUrl: './add-task-form.component.css'
 })
 export class AddTaskFormComponent {
   @Input({ required: true }) userId!: string;
-  @Output() canselNewTaskFrom = new EventEmitter<void>();
-  @Output() createNewTask = new EventEmitter<NewTask>();
+  @Output() close = new EventEmitter<void>();
+
+  private taskService = inject(TaskService);
 
   // new task form inputs:
   newTaskTitle: string = '';
@@ -20,24 +19,16 @@ export class AddTaskFormComponent {
   newTaskDueDate: string = '';
 
   onCancelAddNewTaskForm(){
-    this.canselNewTaskFrom.emit();
+    this.close.emit();
   }
 
   onCreateNewTask() {
-    console.log(`Title: ${this.newTaskTitle}`);
-    console.log(`Summary: ${this.newTaskSummary}`);
-    console.log(`Due Date: ${this.newTaskDueDate}`);
-
-    // Emit an event with new task data
-    this.createNewTask.emit({
+    this.taskService.addTask({
       title: this.newTaskTitle,
       summary: this.newTaskSummary,
       dueDate: this.newTaskDueDate
-    });
+    }, this.userId);
 
-    // Reset form inputs
-    this.newTaskTitle = '';
-    this.newTaskSummary = '';
-    this.newTaskDueDate = '';
+    this.close.emit();
   }
 }
